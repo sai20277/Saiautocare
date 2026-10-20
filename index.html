@@ -21,9 +21,23 @@ h1{font-stretch:125%;font-weight:900;font-size:clamp(2.4rem,11vw,4.6rem);line-he
 .sizes button{font:inherit;font-weight:700;color:var(--onpanel);background:transparent;border:2px solid rgba(242,247,249,.45);border-radius:999px;padding:10px 18px;cursor:pointer;min-height:44px}
 .sizes button[aria-checked="true"]{background:var(--accent);border-color:var(--accent);color:#04202B}
 button:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
-section.plans{padding:12px 0 8px}
-article{padding:30px 0;border-bottom:1px solid var(--line)}
-article:last-child{border-bottom:0}
+section.plans{padding:28px 0 8px;display:grid;gap:18px}
+article{position:relative;padding:24px;background:var(--surface);border:1px solid var(--line);border-radius:18px;min-width:0}
+article.pop{border:2px solid var(--accent);box-shadow:0 12px 34px -18px var(--accent)}
+.badge{position:absolute;top:-13px;left:22px;background:var(--accent);color:#04202B;font-weight:800;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:999px}
+.cmp{margin:34px 0 10px;min-width:0}
+.cmp h2{font-size:1.3rem;margin:0 0 4px}
+.cmp .desc{margin:0 0 14px}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th,td{padding:12px 10px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left}
+thead th{font-size:.8rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+tbody tr:last-child td{border-bottom:0}
+tbody tr{cursor:pointer}
+tbody tr:hover td{background:color-mix(in srgb,var(--accent) 10%,transparent)}
+tbody tr.on td{background:color-mix(in srgb,var(--accent) 22%,transparent);font-weight:800}
+tbody tr:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
 .top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
 h2{font-stretch:112%;font-weight:800;font-size:1.6rem;margin:0}
 .desc{color:var(--muted);margin:6px 0 0;max-width:46ch}
@@ -108,8 +122,8 @@ var L=((navigator.language||"en").slice(0,2)==="es")?"es":"en";
 var SIZES=[["Sedan","Sedan"],["SUV","SUV"],["Large SUV","SUV grande"],["Small truck","Camioneta pequeña"]];
 var PRICE=[[90,150,350],[110,170,400],[130,190,450],[140,200,400]];
 var T={
-en:{sub:"Mobile auto detailing, interior and exterior, done by hand. We come to you.",pl:"Choose your vehicle to see your price",inc:"What is included",ct:"Contact us to book your detail. Mobile service: we come to you.",call:"Call 858-599-1111",txt:"Text us",aria:"Packages and prices",choose:"Choose this package",pay:"How would you like to pay?",cash:"Cash",zask:"Text us and we will send you our Zelle details.",zsend:"Send {p} by Zelle to:",cashT:"Pay in cash before we start the work.",note:"Payment is made directly to us. Nothing is charged on this page.",confirm:"Text us to confirm",close:"Close",body:"Hi SAI AUTO CARE, I want {pkg} for my {veh} ({price}). Payment: {pay}."},
-es:{sub:"Detallado automotriz móvil, interior y exterior, hecho a mano. Vamos a donde estés.",pl:"Elige tu vehículo para ver tu precio",inc:"Qué incluye",ct:"Contáctanos para reservar tu servicio. Servicio móvil: vamos a donde estés.",call:"Llama al 858-599-1111",txt:"Envía un mensaje",aria:"Paquetes y precios",choose:"Elegir este paquete",pay:"¿Cómo quieres pagar?",cash:"Efectivo",zask:"Envíanos un mensaje y te mandamos los datos de Zelle.",zsend:"Envía {p} por Zelle a:",cashT:"Paga en efectivo antes de que empecemos el trabajo.",note:"El pago se hace directamente con nosotros. En esta página no se cobra nada.",confirm:"Envíanos un mensaje para confirmar",close:"Cerrar",body:"Hola SAI AUTO CARE, quiero {pkg} para mi {veh} ({price}). Pago: {pay}."}};
+en:{sub:"Mobile auto detailing, interior and exterior, done by hand. We come to you.",pl:"Choose your vehicle to see your price",pop:"Most popular",cmp:"Compare all prices",cmpd:"Tap a vehicle to update the packages above.",veh:"Vehicle",inc:"What is included",ct:"Contact us to book your detail. Mobile service: we come to you.",call:"Call 858-599-1111",txt:"Text us",aria:"Packages and prices",choose:"Choose this package",pay:"How would you like to pay?",cash:"Cash",zask:"Text us and we will send you our Zelle details.",zsend:"Send {p} by Zelle to:",cashT:"Pay in cash before we start the work.",note:"Payment is made directly to us. Nothing is charged on this page.",confirm:"Text us to confirm",close:"Close",body:"Hi SAI AUTO CARE, I want {pkg} for my {veh} ({price}). Payment: {pay}."},
+es:{sub:"Detallado automotriz móvil, interior y exterior, hecho a mano. Vamos a donde estés.",pl:"Elige tu vehículo para ver tu precio",pop:"Más popular",cmp:"Compara todos los precios",cmpd:"Toca un vehículo para actualizar los paquetes de arriba.",veh:"Vehículo",inc:"Qué incluye",ct:"Contáctanos para reservar tu servicio. Servicio móvil: vamos a donde estés.",call:"Llama al 858-599-1111",txt:"Envía un mensaje",aria:"Paquetes y precios",choose:"Elegir este paquete",pay:"¿Cómo quieres pagar?",cash:"Efectivo",zask:"Envíanos un mensaje y te mandamos los datos de Zelle.",zsend:"Envía {p} por Zelle a:",cashT:"Paga en efectivo antes de que empecemos el trabajo.",note:"El pago se hace directamente con nosotros. En esta página no se cobra nada.",confirm:"Envíanos un mensaje para confirmar",close:"Cerrar",body:"Hola SAI AUTO CARE, quiero {pkg} para mi {veh} ({price}). Pago: {pay}."}};
 var PK=[
 {n:"Detailing Express",d:["Weekly maintenance, about 60–90 minutes. Your car clean, shiny and with urban style.","Mantenimiento semanal, aproximadamente 60–90 minutos. Tu carro limpio, brillante y con estilo urbano."],u:["per service","por servicio"],f:[
 ["Light vacuuming (carpets, mats, trunk)","Aspirado ligero (alfombras, tapetes, cajuela)"],["Compressed air","Aire comprimido"],["Dashboard, cup holder, console and steering wheel cleaning","Limpieza de tablero, portavasos, consola y volante"],["Spotless interior glass","Vidrios interiores impecables"],["Air freshener","Aromatizante"],["Pre-wash","Prelavado"],["Hand wash with sponges","Lavado a mano con esponjas"],["Wash and wax shampoo","Shampoo de lavado y cera"],["Tire and rim washing","Lavado de llantas y rines"],["Rinse with filtered water","Enjuague con agua filtrada"],["Microfiber drying","Secado con microfibra"],["Spotless windows","Ventanas impecables"],["Tire shine","Brillo para llantas"],["Paint spray wax","Cera en spray para la pintura"]]},
@@ -129,12 +143,13 @@ function render(){
   Array.prototype.forEach.call(document.querySelectorAll(".lang button"),function(b){b.setAttribute("aria-pressed",b.getAttribute("data-l")===L?"true":"false")});
   sb.innerHTML="";
   SIZES.forEach(function(s,k){var b=document.createElement("button");b.type="button";b.setAttribute("role","radio");b.textContent=s[i18n];b.onclick=function(){cur=k;paint(true)};sb.appendChild(b)});
-  pl.innerHTML=PK.map(function(p,i){return '<article><div class="top"><div><h2>'+p.n+'</h2><p class="desc">'+p.d[i18n]+'</p></div><div><div class="price" id="p'+i+'"></div><span class="note">'+p.u[i18n]+'</span></div></div><button type="button" class="choose" data-i="'+i+'">'+t.choose+'</button><details><summary>'+t.inc+'</summary><ul>'+p.f.map(function(x){return "<li>"+x[i18n]+"</li>"}).join("")+'</ul></details></article>'}).join("");
+  pl.innerHTML=PK.map(function(p,i){return '<article'+(i===1?' class="pop"><span class="badge">'+t.pop+'</span>':'>')+'<div class="top"><div><h2>'+p.n+'</h2><p class="desc">'+p.d[i18n]+'</p></div><div><div class="price" id="p'+i+'"></div><span class="note">'+p.u[i18n]+'</span></div></div><button type="button" class="choose" data-i="'+i+'">'+t.choose+'</button><details><summary>'+t.inc+'</summary><ul>'+p.f.map(function(x){return "<li>"+x[i18n]+"</li>"}).join("")+'</ul></details></article>'}).join("")+'<div class="cmp"><h2>'+t.cmp+'</h2><p class="desc">'+t.cmpd+'</p><div class="tw"><table><thead><tr><th scope="col">'+t.veh+'</th>'+PK.map(function(p){return '<th scope="col">'+p.n.replace(" Detailing","").replace("Detailing ","")+'</th>'}).join("")+'</tr></thead><tbody>'+SIZES.map(function(s,k){return '<tr tabindex="0" data-k="'+k+'"><td>'+s[i18n]+'</td>'+PRICE[k].map(function(v){return '<td>$'+v+'</td>'}).join("")+'</tr>'}).join("")+'</tbody></table></div></div>';
   paint(false);
   if($("dlg").open)payPaint();
 }
 function paint(anim){
   Array.prototype.forEach.call(sb.children,function(b,k){b.setAttribute("aria-checked",k===cur?"true":"false")});
+  Array.prototype.forEach.call(pl.querySelectorAll("tbody tr"),function(r,k){r.classList.toggle("on",k===cur)});
   PK.forEach(function(p,i){var e=$("p"+i);if(anim){e.classList.add("swap");setTimeout(function(){e.textContent="$"+PRICE[cur][i];e.classList.remove("swap")},120)}else{e.textContent="$"+PRICE[cur][i]}});
 }
 Array.prototype.forEach.call(document.querySelectorAll(".lang button"),function(b){b.onclick=function(){L=b.getAttribute("data-l");render()}});
@@ -150,7 +165,9 @@ function payPaint(){
   $("dc").textContent=t.confirm;$("dc").href="sms:+18585991111?&body="+encodeURIComponent(body);
   $("dx").textContent=t.close;
 }
-pl.addEventListener("click",function(e){var b=e.target.closest(".choose");if(b){sel=+b.getAttribute("data-i");pay="zelle";payPaint();$("dlg").showModal()}});
+function pickRow(e){var r=e.target.closest("tbody tr");if(r){cur=+r.getAttribute("data-k");paint(true)}}
+pl.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&e.target.closest("tbody tr")){e.preventDefault();pickRow(e)}});
+pl.addEventListener("click",function(e){pickRow(e);var b=e.target.closest(".choose");if(b){sel=+b.getAttribute("data-i");pay="zelle";payPaint();$("dlg").showModal()}});
 $("bz").onclick=function(){pay="zelle";payPaint()};
 $("bc").onclick=function(){pay="cash";payPaint()};
 $("dx").onclick=function(){$("dlg").close()};
